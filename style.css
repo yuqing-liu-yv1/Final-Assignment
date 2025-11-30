@@ -1,0 +1,276 @@
+/* ===== Pantone palette → RGB =====
+Botanical Green (19-5220)  → rgb(18, 64, 60)
+Beryl Green (16-5515)      → rgb(97, 145, 135)
+Harbor Blue (18-4728)      → rgb(22, 115, 126)
+Aqua Haze (15-5209)        → rgb(130, 184, 187)
+Captain's Blue (18-4020)   → rgb(85, 112, 136)
+Elderberry (17-1605)       → rgb(157, 132, 142)
+Heirloom Lilac (16-3812)   → rgb(153, 147, 179)
+Filmy (20-0091)            → rgb(206, 192, 189)
+*/
+
+/* ==== 全局：正文和 headline 用衬线体 ==== */
+
+body {
+  font-family: "Times New Roman", Times, serif;
+  background-color: rgb(206, 192, 189); /* Filmy */
+  color: #000000;
+  margin: 0;
+  padding: 0;
+  line-height: 1.7;
+}
+
+/* ==== Header：左对齐，简约 ==== */
+
+header {
+  background: linear-gradient(
+    135deg,
+    rgb(85, 112, 136),  /* Captain's Blue */
+    rgb(22, 115, 126)   /* Harbor Blue */
+  );
+  color: #ffffff;
+  padding: 1.5rem 40px;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 30px;     /* headline 30px */
+  font-weight: 700;    /* bold */
+  margin: 0 0 0.5rem 0;
+  text-align: left;
+}
+
+/* byline：Raleway 12 号斜体 */
+
+.byline {
+  font-family: "Raleway", sans-serif;
+  font-size: 12px;
+  font-style: italic;
+  margin: 0;
+}
+
+/* ==== 正文区域：margin 上下 20 左右 40 ==== */
+
+main {
+  margin: 20px 40px;
+}
+
+article {
+  max-width: 900px;
+}
+
+/* 保险：防止极端情况下高度塌陷 */
+article::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* 段落：15px 正文字号 */
+
+p {
+  font-size: 15px;
+  margin-bottom: 1.2rem;
+}
+
+/* 首段首字放大：20px */
+
+.lede p:first-of-type .dropcap {
+  font-size: 20px;
+  font-weight: 700;
+  float: left;
+  line-height: 1;
+  margin-right: 6px;
+  color: rgb(18, 64, 60); /* Botanical Green */
+}
+
+/* 小标题 */
+
+h2 {
+  font-size: 22px;
+  color: rgb(85, 112, 136); /* Captain's Blue */
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ==== 图片布局 ==== */
+
+figure {
+  margin: 1.5rem 0;
+}
+
+/* 两张图并排时使用 */
+
+.photo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.photo-figure {
+  flex: 1 1 260px;
+}
+
+/* 图片外框：简洁、用 palette 里的绿色/蓝色 */
+
+.photo-frame {
+  width: 100%;
+  background-color: rgb(130, 184, 187); /* Aqua Haze */
+  border-radius: 8px;
+  border: 1px solid rgb(97, 145, 135);  /* Beryl Green */
+  box-sizing: border-box;
+  padding: 4px;
+}
+
+.photo-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+/* caption：Sans Serif 10px，灰色 #3C4043 */
+
+figcaption {
+  font-family: sans-serif;
+  font-size: 10px;
+  color: #3C4043;
+  margin-top: 0.4rem;
+}
+
+/* ==== 人物两栏布局（Melissa & Delores） ==== */
+
+.profile-section {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  margin: 2rem 0;
+}
+
+.profile-section .profile-text {
+  flex: 1 1 55%;
+}
+
+.profile-section .profile-photo {
+  flex: 0 0 40%;
+  margin: 0;
+}
+
+/* reverse：用在 Delores，那一节图在左、字在右 */
+.profile-section.reverse {
+  flex-direction: row-reverse;
+}
+
+/* ==== 互动图表块 ==== */
+
+.interactive {
+  background-color: rgb(130, 184, 187); /* Aqua Haze */
+  border-radius: 10px;
+  padding: 1.5rem 1.25rem 1.75rem;
+  margin-top: 2rem;
+  border: 1px solid rgb(97, 145, 135); /* Beryl Green */
+}
+
+.interactive p {
+  margin-bottom: 0.8rem;
+}
+
+#chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  gap: 0.75rem;
+  height: 220px;
+  margin-top: 1rem;
+}
+
+/* JS 生成的柱子 */
+
+.bar {
+  width: 60px;
+  border-radius: 6px 6px 0 0;
+  background-color: rgb(85, 112, 136); /* Captain's Blue */
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.bar-label {
+  position: absolute;
+  left: 50%;
+  bottom: -1.4rem;
+  transform: translateX(-50%);
+  font-size: 13px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.bar-value {
+  position: absolute;
+  left: 50%;
+  top: -1.4rem;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: #000000;
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 0.1rem 0.4rem;
+  border-radius: 999px;
+}
+
+/* hover 用 Elderberry 做点缀 */
+
+.bar:hover {
+  transform: translateY(-6px);
+  background-color: rgb(157, 132, 142); /* Elderberry */
+}
+
+/* ==== Footer ==== */
+
+footer {
+  background-color: rgb(18, 64, 60); /* Botanical Green */
+  color: #ffffff;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 1.5rem;
+}
+
+.credits {
+  margin: 0;
+  font-size: 12px;
+}
+
+/* ==== 响应式：小屏时两栏改为上下排 ==== */
+
+@media (max-width: 800px) {
+  main {
+    margin: 20px 20px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  .profile-section,
+  .profile-section.reverse {
+    flex-direction: column;
+  }
+
+  .profile-section .profile-photo,
+  .profile-section .profile-text {
+    flex: 1 1 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .photo-grid {
+    flex-direction: column;
+  }
+
+  .bar {
+    width: 45px;
+  }
+}
